@@ -53,7 +53,7 @@ const sendForm = () => {
     isValidSTATE();
     isValidPCODE();
     isValidMpay();
-    isValidMESAGGE();
+    //isValidMESAGGE();
   });
 };
 
@@ -72,14 +72,15 @@ const isValidCARD = () => {
   }
 };
 const isValidCVC = () => {
-  if (CVC.value.length > 5) {
-    isInValid(CVC);
+  if (CVC.value.length == 4 && checkIfNumber(CVC)) {
     LCVC.innerHTML = "CVC ";
     LCVC.className = "bg-white";
   } else {
+    isInValid(CVC);
     LCVC.innerHTML = "Invalid CVC";
     LCVC.className = "bg-danger p-2";
   }
+  console.log(AMOUNT);
 };
 const isValidAMOUNT = () => {
   if (checkIfNumber(AMOUNT)) {
@@ -122,13 +123,14 @@ const isValidACITY = () => {
 const isValidSTATE = () => {
   if (STATE.value != "") {
     isValid(STATE);
-    LSTATE.innerHTML = "State ";
-    LSTATE.className = "bg-white";
+    LSTATE.innerHTML = "State:";
+    LSTATE.className = " form-label d-block bg-white p-2";
+    console.log("hago comprobacion positiva");
   } else {
     isInValid(STATE);
+    LSTATE.innerHTML = " The state has not been chosen ";
+    LSTATE.className = "bg-danger p-2";
   }
-  LSTATE.innerHTML = " The state has not been chosen ";
-  LSTATE.className = "bg-danger p-2";
 };
 
 const isValidMpay = () => {
@@ -215,7 +217,7 @@ const checkIfText = (texto, label) => {
 };
 
 const esString = Text => {
-  return /^[a-zA-Z]+$/.test(Text);
+  return /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/.test(Text);
 };
 
 const checkCreditCardNumber = cardNumber => {
