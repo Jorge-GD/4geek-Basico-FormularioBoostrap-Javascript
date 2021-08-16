@@ -217,7 +217,9 @@ const checkIfText = (texto, label) => {
 };
 
 const esString = Text => {
-  return /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/.test(Text);
+  if (Text != " ") {
+    return /^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]+$/.test(Text);
+  }
 };
 
 const checkCreditCardNumber = cardNumber => {
